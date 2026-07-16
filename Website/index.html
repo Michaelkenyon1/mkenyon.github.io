@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michael Kenyon | Portfolio</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Warm, dimmed, organic palette */
+        :root {
+            --dimmed-white: #DFD7C7;     /* Soft warm oatmeal background */
+            --natural-tan: #D0C6B2;      /* Earthy warm sand card background */
+            --border-color: #BEB4A0;     /* Muted organic borders */
+            --navy: #2E2F27;             /* Soft charcoal-forest green for text */
+            --accent-blue: #5C6B5E;      /* Muted sage green for interactive states */
+            --text-main: var(--navy);
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--dimmed-white);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+        }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(223, 215, 199, 0.95);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--navy);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent-blue);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-blue);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background-color: var(--natural-tan);
+            border-bottom: 1px solid var(--border-color);
+            padding-top: 8rem;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 2rem;
+        }
+
+        .hero-headshot-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Adjusted headshot setting to lower the profile picture */
+        .hero-headshot {
+            width: 100%;
+            max-width: 320px;
+            height: 400px;
+            object-fit: cover;
+            object-position: center .50%; /* Shifted image down to .50% */
+            border-radius: 16px;
+            border: 6px solid var(--dimmed-white);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--navy);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--navy);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-blue);
+            color: var(--dimmed-white);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--accent-blue);
+            border-color: var(--accent-blue);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--navy);
+            border: 2px solid var(--navy);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--navy);
+            color: var(--dimmed-white);
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title span {
+            border-bottom: 3px solid var(--accent-blue);
+        }
+
+        /* Combined About Me Section */
+        .about-content {
+            background-color: var(--natural-tan);
+            padding: 3rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 3rem;
+        }
+
+        .about-content h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            color: var(--navy);
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-highlight {
+            color: var(--accent-blue);
+            font-weight: 600;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skills-category {
+            background-color: var(--dimmed-white);
+            padding: 1.5rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .skills-category h4 {
+            margin-bottom: 1rem;
+            color: var(--navy);
+            font-size: 1.1rem;
+            border-bottom: 2px solid var(--accent-blue);
+            padding-bottom: 0.3rem;
+        }
+
+        .skills-list {
+            list-style: none;
+        }
+
+        .skills-list li {
+            font-size: 0.95rem;
+            margin-bottom: 0.6rem;
+            padding-left: 0.5rem;
+            position: relative;
+        }
+
+        .skills-list li::before {
+            content: "•";
+            color: var(--accent-blue);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        /* Qualifications Grid */
+        .qualifications-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .qual-card {
+            background-color: var(--natural-tan);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .qual-card h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--accent-blue);
+            padding-bottom: 0.5rem;
+            color: var(--navy);
+        }
+
+        .qual-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .qual-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .qual-item h4 {
+            font-size: 1.1rem;
+            color: var(--navy);
+        }
+
+        .qual-item p {
+            font-size: 0.95rem;
+            opacity: 0.95;
+            margin-top: 0.3rem;
+        }
+
+        .qual-meta {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+            margin-top: 0.2rem;
+        }
+
+        .bullet-list {
+            list-style-type: disc;
+            margin-left: 1.2rem;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .bullet-list li {
+            margin-bottom: 0.3rem;
+        }
+
+        /* Certificate Link */
+        .cert-pdf-container {
+            margin-top: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background-color: #ffffff;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .cert-link {
+            text-decoration: none;
+            color: var(--accent-blue);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        /* Experience Section */
+        .experience-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .experience-item {
+            background-color: var(--natural-tan);
+            border-left: 5px solid var(--navy);
+            padding: 2rem;
+            border-radius: 0 8px 8px 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .experience-item h3 {
+            color: var(--accent-blue);
+        }
+
+        .experience-item h4 {
+            font-family: var(--font-body);
+            font-weight: 600;
+            color: var(--navy);
+            margin-top: 0.2rem;
+        }
+
+        .experience-date {
+            color: var(--navy);
+            font-size: 0.9rem;
+            background-color: var(--dimmed-white);
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            align-self: flex-start;
+            font-weight: 600;
+        }
+
+        /* Portfolio Grid & Cards */
+        .portfolio-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+            color: var(--navy);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--accent-blue);
+            color: var(--dimmed-white);
+            border-color: var(--accent-blue);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--natural-tan);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .project-icon-wrapper {
+            height: 140px;
+            background-color: var(--dimmed-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-blue);
+            font-size: 2.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-card h3 {
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: var(--navy);
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .read-more-indicator {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: auto;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--navy);
+            color: var(--dimmed-white);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo span {
+            color: var(--accent-blue);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-icon {
+            color: var(--dimmed-white);
+            font-size: 1.8rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            color: var(--accent-blue);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 900px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-headshot {
+                max-height: 350px;
+            }
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            .cta-buttons {
+                justify-content: center;
+            }
+            .qualifications-grid {
+                grid-template-columns: 1fr;
+            }
+            .experience-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">Michael<span>Kenyon</span></a>
+            <ul class="nav-links">
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#portfolio">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-headshot-container">
+                <img src="me.jpg" alt="Michael Kenyon Headshot" class="hero-headshot">
+            </div>
+            <div class="hero-content">
+                <h1 class="hero-title">My Portfolio</h1>
+                <p class="hero-subtitle">Communications Management Student at the University of Dayton | Strategic Communications, Marketing & Outreach</p>
+                <div class="cta-buttons">
+                    <a href="#portfolio" class="btn btn-primary">View Projects</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <div class="about-content">
+            <div class="about-content">
+    <h3>My Path</h3>
+    <p>
+        My path to where I am today hasn't been a straight line, and I wouldn’t have it any other way. I started out in the high-pressure world of professional kitchens in New York City, including my time training at the Culinary Institute of America. While the intensity was addictive, I realized that what kept me going wasn't just the food, it was the team dynamics and the challenge of creating a great experience for people.
+        <br><br>
+        That shift in perspective led me to the University of Dayton to pursue my B.A. in Communication Management. I’ve leaned into the PR and marketing side of the degree, focusing on how strategic messaging can move the needle for a brand. I’ve balanced a heavy course load with work to make sure I’m hitting my goals and staying on track to graduate.
+        <br><br>
+        Currently, I’m working as an HR Student Assistant at the university for the summer, where I manage database compliance and internal communication workflows. This fall, I’m moving into an Employer Relations internship, also here at UD, where I’ll be managing partnerships and bridging the gap between our academic programs and the outside industry.
+        <br><br>
+        When I graduate, I’m looking to bring that operational background into a corporate setting. I’m interested in the "behind-the-scenes" of a business, the communication and project work that keeps a team aligned and a brand’s story clear. I want to work with a team where I can use my experience to help build systems and tell stories that actually land with the people they’re meant to reach.
+    </p>
+</div>
+
+            <div class="skills-grid">
+                <div class="skills-category">
+                    <h4>Communications & Media</h4>
+                    <ul class="skills-list">
+                        <li>Internal & External Communications</li>
+                        <li>Public Affairs & Advocacy</li>
+                        <li>Media Relations</li>
+                        <li>Audience Framing Analysis</li>
+                    </ul>
+                </div>
+                <div class="skills-category">
+                    <h4>Marketing & Strategy</h4>
+                    <ul class="skills-list">
+                        <li>Integrated Marketing Strategy</li>
+                        <li>Brand Management & Storytelling</li>
+                        <li>Advertising & Copywriting</li>
+                        <li>Strategic Planning & Execution</li>
+                    </ul>
+                </div>
+                <div class="skills-category">
+                    <h4>Technical & Systems</h4>
+                    <ul class="skills-list">
+                        <li>Artificial Intelligence (AI) Literacy</li>
+                        <li>HRIS Systems & BDM Records</li>
+                        <li>Compliance & Database Workflow</li>
+                        <li>Project Management Systems</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="qualifications-grid">
+            <div class="qual-card">
+                <h3>Education</h3>
+                <div class="qual-item">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                        <h4>University of Dayton</h4>
+                        <span class="qual-meta">Jan 2025 - May 2027</span>
+                    </div>
+                    <p><strong>Bachelor of Arts in Communication</strong> (Focus in Strategic Communication Management & Business Operations)</p>
+                    <ul class="bullet-list">
+                        <li><strong>In-Depth Academic Focus:</strong> Actively analyzing communication theories, media ecology, interpersonal dynamics, and target audience framing.</li>
+                        <li><strong>Creative & Strategic Application:</strong> Generating brand-aligned social media layouts, copywriting campaigns, and media outreach plans.</li>
+                        <li>Maintaining a strong <strong>3.58 GPA</strong> with recognized academic dedication.</li>
+                        <li>Recipient of the <strong>Dayton Newspaper Inc. Scholarship</strong> for achievements within the communications department.</li>
+                    </ul>
+                </div>
+                <div class="qual-item" style="margin-top: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                        <h4>The Culinary Institute of America</h4>
+                        <span class="qual-meta">Aug 2023 - Aug 2024</span>
+                    </div>
+                    <p><strong>Culinary Arts</strong></p>
+                    <ul class="bullet-list">
+                        <li>Coordinated themed dining events and managed cross-functional team workflows</li>
+                        <li>Managed logistics for campus pop-ups, improving general operational setup</li>
+                        <li>Led farm-to-table programming to explain food sourcing and sustainability to guests</li>
+                        <li>Built a strong foundation in teamwork, sharp execution, and fast-paced operational discipline</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="qual-card">
+                <div>
+                    <h3>Licenses & Certifications</h3>
+                    <div class="qual-item">
+                        <h4>Stay Ahead of the AI Curve</h4>
+                        <p style="font-weight: 600; color: var(--accent-blue);">Google (via Coursera)</p>
+                        <p style="font-size: 0.85rem; margin-top: 0.2rem;">Issued Jul 13, 2026</p>
+                        <p style="font-size: 0.9rem; margin-top: 0.5rem; line-height: 1.5;">
+                            Authorized by Google and completed online via Coursera. Focused on evaluating emerging artificial intelligence, practical strategic planning, and understanding workflows utilizing generative technologies.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="cert-pdf-container">
+                    <a href="pdfs/Coursera 50TWQPPD274D.pdf" target="_blank" class="cert-link">View Certificate PDF</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="section-header">
+            <h2 class="section-title">Professional <span>Experience</span></h2>
+        </div>
+        <div class="experience-timeline">
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <h3>HR Student Assistant</h3>
+                        <h4>University of Dayton Office of Human Resources | Part-time</h4>
+                    </div>
+                    <span class="experience-date">May 2026 - Present</span>
+                </div>
+                <div class="experience-body">
+                    <p>Directly manage electronic document processing and records retention utilizing the Banner Document Management (BDM) system. Review and process Federal Form I-9 and E-Verify compliance tasks for campus employees and graduate assistants while assisting the office team with day-to-day onboarding inquiries.</p>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <h3>Shift Supervisor</h3>
+                        <h4>Starbucks | Part-time (Oakwood, Ohio)</h4>
+                    </div>
+                    <span class="experience-date">Sep 2024 - May 2026</span>
+                </div>
+                <div class="experience-body">
+                    <p>Managed daily shifts, cash safety, and stock workflows in a fast-paced retail atmosphere. Led and organized team schedules to keep queue times low and customer satisfaction high during peak volume windows.</p>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <h3>Sales Associate & Salesperson</h3>
+                        <h4>vineyard vines | Full-time (Freeport, Maine)</h4>
+                    </div>
+                    <span class="experience-date">Jun 2024 - Sep 2024</span>
+                </div>
+                <div class="experience-body">
+                    <p>Supported customer experience by sharing product knowledge and building brand loyalty. Assisted with visual displays, updated inventory records, and met store floor performance targets.</p>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <h3>Operations Intern</h3>
+                        <h4>Oceana Seafood Restaurant</h4>
+                    </div>
+                    <span class="experience-date">Apr 2024 - May 2024</span>
+                </div>
+                <div class="experience-body">
+                    <p>Collaborated behind the scenes in high-volume, timed kitchen coordination. Promoted clear team communications to keep kitchen and service staff aligned under strict health, safety, and brand-quality standards.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <div class="section-header">
+            <h2 class="section-title">My <span>Portfolio</span></h2>
+            <p>A collection of my strategic, academic, advocacy, and creative writing projects. Click on any card to view the complete PDF project.</p>
+        </div>
+
+        <div class="portfolio-filters">
+            <button class="filter-btn active" onclick="filterSelection('all')">All Works</button>
+            <button class="filter-btn" onclick="filterSelection('strategic')">Strategic & Advocacy</button>
+            <button class="filter-btn" onclick="filterSelection('creative')">Creative Writing</button>
+        </div>
+
+        <div class="projects-grid">
+            
+            <a href="pdfs/workplace-conflict-digital-media.pdf" target="_blank" class="project-card filter-item strategic">
+                <div class="project-icon-wrapper">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <div class="project-content">
+                    <h3>Workplace Conflict & Digital Media</h3>
+                    <p class="project-desc">An empirical research paper investigating how mediated platforms like Slack and Zoom alter organizational communication climates.</p>
+                    <span class="read-more-indicator">Open PDF &rarr;</span>
+                </div>
+            </a>
+
+            <a href="pdfs/up-in-ashes.pdf" target="_blank" class="project-card filter-item creative">
+                <div class="project-icon-wrapper">
+                    <i class="fas fa-feather-alt"></i>
+                </div>
+                <div class="project-content">
+                    <h3>Up In Ashes</h3>
+                    <p class="project-desc">A dramatic fiction piece set in historical Los Angeles, exploring themes of grief, complex choices, and personal resilience.</p>
+                    <span class="read-more-indicator">Open PDF &rarr;</span>
+                </div>
+            </a>
+
+            <a href="pdfs/bridging-the-gap-food-deserts.pdf" target="_blank" class="project-card filter-item strategic">
+                <div class="project-icon-wrapper">
+                    <i class="fas fa-apple-whole"></i>
+                </div>
+                <div class="project-content">
+                    <h3>Bridging the Gap: Food Deserts</h3>
+                    <p class="project-desc">An advocacy presentation highlighting structural barriers to healthy food equity in low-income metropolitan neighborhoods.</p>
+                    <span class="read-more-indicator">Open PDF &rarr;</span>
+                </div>
+            </a>
+
+            <a href="pdfs/political-bias-news-networks.pdf" target="_blank" class="project-card filter-item strategic">
+                <div class="project-icon-wrapper">
+                    <i class="fas fa-newspaper"></i>
+                </div>
+                <div class="project-content">
+                    <h3>Political Bias in News Networks</h3>
+                    <p class="project-desc">A collaborative mass communication project analyzing framing theory, agenda-setting, and media bias across networks.</p>
+                    <span class="read-more-indicator">Open PDF &rarr;</span>
+                </div>
+            </a>
+
+            <a href="pdfs/eyewitness-reform-memory-myth.pdf" target="_blank" class="project-card filter-item strategic">
+                <div class="project-icon-wrapper">
+                    <i class="fas fa-gavel"></i>
+                </div>
+                <div class="project-content">
+                    <h3>Eyewitness Reform: Memory Myth</h3>
+                    <p class="project-desc">A persuasive infographic and advocacy Op-Ed proposing double-blind lineups and immediate confidence statements.</p>
+                    <span class="read-more-indicator">Open PDF &rarr;</span>
+                </div>
+            </a>
+
+            <a href="pdfs/cancel-culture-social-media.pdf" target="_blank" class="project-card filter-item strategic">
+                <div class="project-icon-wrapper">
+                    <i class="fas fa-hashtag"></i>
+                </div>
+                <div class="project-content">
+                    <h3>Cancel Culture & Social Media</h3>
+                    <p class="project-desc">An analysis of algorithms that drive outrage, online accountability, and the boundaries between justice and mob dynamics.</p>
+                    <span class="read-more-indicator">Open PDF &rarr;</span>
+                </div>
+            </a>
+
+            <a href="pdfs/environmental-stewardship-campaign.pdf" target="_blank" class="project-card filter-item strategic">
+                <div class="project-icon-wrapper">
+                    <i class="fas fa-tree"></i>
+                </div>
+                <div class="project-content">
+                    <h3>Environmental Stewardship Campaign</h3>
+                    <p class="project-desc">A group project exploring environmental stewardship, public health benefits of urban trees, and risk management.</p>
+                    <span class="read-more-indicator">Open PDF &rarr;</span>
+                </div>
+            </a>
+
+            <a href="pdfs/nike-marketing-concepts.pdf" target="_blank" class="project-card filter-item strategic">
+                <div class="project-icon-wrapper">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="project-content">
+                    <h3>Nike Marketing Concepts</h3>
+                    <p class="project-desc">An industry analysis exploring market segmentation, targeting, CRM database management, and emotional branding.</p>
+                    <span class="read-more-indicator">Open PDF &rarr;</span>
+                </div>
+            </a>
+
+            <a href="pdfs/heat-hustle-heart.pdf" target="_blank" class="project-card filter-item creative">
+                <div class="project-icon-wrapper">
+                    <i class="fas fa-fire-burner"></i>
+                </div>
+                <div class="project-content">
+                    <h3>Heat, Hustle, and Heart</h3>
+                    <p class="project-desc">A creative non-fiction essay detailing personal growth and lessons in mental resilience from NYC's Michelin kitchens.</p>
+                    <span class="read-more-indicator">Open PDF &rarr;</span>
+                </div>
+            </a>
+
+            <a href="pdfs/relationship-dynamics-analysis.pdf" target="_blank" class="project-card filter-item strategic">
+                <div class="project-icon-wrapper">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="project-content">
+                    <h3>Relationship Dynamics Analysis</h3>
+                    <p class="project-desc">An interpersonal research paper analyzing dialectic tensions and conflict styles in close sibling bonds.</p>
+                    <span class="read-more-indicator">Open PDF &rarr;</span>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer id="contact">
+        <div class="footer-logo">Michael<span>Kenyon</span></div>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/michael-kenyon-47523b359/" class="social-icon" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:kenyonl1@udayton.edu" class="social-icon"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p>&copy; 2026 Michael Kenyon. </p>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        function filterSelection(category) {
+            const items = document.querySelectorAll('.filter-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            buttons.forEach(btn => {
+                if (btn.getAttribute('onclick').includes(category)) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            items.forEach(item => {
+                if (category === 'all') {
+                    item.style.display = 'flex';
+                } else {
+                    if (item.classList.contains(category)) {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
